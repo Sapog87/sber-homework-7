@@ -11,7 +11,7 @@ class PluginManagerImplTest {
     @Test
     @DisplayName("Классы с одинаковыми именами загружены успешно")
     void givenPluginManager_whenLoadPluginsWithTheSameNames_thenSuccess() {
-        String rootFolder = ".\\src\\test\\resources\\plugins";
+        String rootFolder = "./src/test/resources/plugins";
         PluginManager pluginManager = new PluginManagerImpl(rootFolder);
 
         Plugin plugin1 = pluginManager.load("plugin1", "org.sber.PluginImpl");
@@ -25,7 +25,7 @@ class PluginManagerImplTest {
     @Test
     @DisplayName("Исключение, если класс не имплементируют Plugin")
     void givenPluginManager_whenLoadWrongPlugin_thenException() {
-        String rootFolder = ".\\src\\test\\resources\\plugins";
+        String rootFolder = "./src/test/resources/plugins";
         PluginManager pluginManager = new PluginManagerImpl(rootFolder);
 
         assertThrows(PluginException.class, () -> pluginManager.load("plugin3", "org.sber.PluginImpl"));
@@ -34,7 +34,7 @@ class PluginManagerImplTest {
     @Test
     @DisplayName("Null, если не нашли плагин в заданной папке")
     void givenPluginManager_whenLoadNonexistentPlugin_thenNull() {
-        String rootFolder = ".\\src\\test\\resources\\plugins";
+        String rootFolder = "./src/test/resources/plugins";
         PluginManager pluginManager = new PluginManagerImpl(rootFolder);
 
         Plugin plugin1 = pluginManager.load("plugin1", "org.sber.NonexistentPluginImpl");
@@ -45,7 +45,7 @@ class PluginManagerImplTest {
     @Test
     @DisplayName("Исключение, если папки не существует")
     void givenPluginManager_whenLoadFromNonexistentFolder_thenException() {
-        String rootFolder = ".\\src\\test\\resources\\plugins";
+        String rootFolder = "./src/test/resources/plugins";
         PluginManager pluginManager = new PluginManagerImpl(rootFolder);
 
         assertThrows(IllegalArgumentException.class, () -> pluginManager.load("nonexistentPlugin", "org.sber.PluginImpl"));
